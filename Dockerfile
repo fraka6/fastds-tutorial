@@ -29,9 +29,14 @@ RUN curl https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK
     tar xvfp ${SPARK_HOME}-${SPARK_VERSION}-bin-without-hadoop.tgz -C ${SPARK_HOME} --strip-components=1 && \
     rm /opt/spark-$SPARK_VERSION-bin-without-hadoop.tgz
 
+# checkout mlboost 
+RUN hg clone https://fraka6@bitbucket.org/fraka6/mlboost
 # sbins dir of spark and hadoop isn't include in PATH because thereis conflict on excutables names
 ENV PATH=${SPARK_HOME}/bin:${PATH} \
-    PATH=${HADOOP_HOME}/bin:${PATH}
+    PATH=${HADOOP_HOME}/bin:${PATH} \
+    PATH=/work-dir/mlboost:${PATH} \
+    PYTHONPATH=${}
+
 
 # https://spark.apache.org/docs/latest/hadoop-provided.html
 RUN echo 'export SPARK_DIST_CLASSPATH=$(hadoop classpath)' >> ${SPARK_HOME}/conf/spark-env.sh && chmod +x ${SPARK_HOME}/conf/spark-env.sh
