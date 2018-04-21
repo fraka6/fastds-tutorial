@@ -3,7 +3,6 @@ numpy==1.14.*
 scipy==1.0.*
 spark-sklearn==0.2.*
 py4j==0.10.*
-mlboost==0.4.*
 sympy==1.1.*
 keras==2.1.*
 

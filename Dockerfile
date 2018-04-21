@@ -66,6 +66,12 @@ RUN python3 -m ipykernel install
 RUN mkdir /work-dir /work-dir/hadoop /work-dir/spark
 WORKDIR /work-dir
 
+# Install mlboost
+RUN cd /work-dir && hg clone https://fraka6@bitbucket.org/fraka6/mlboost
+# Configure mlboost paths
+ENV PATH=/work-dir/mlboost/mlboost/util:${PATH} \
+    PYTHONPATH=/work-dir/mlboost
+
 # Volumes are used to persist data
 # Path on the local filesystem where the NameNode stores the namespace and transactions logs persistently.
 VOLUME /work-dir/hadoop/dfs.name
