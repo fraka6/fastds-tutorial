@@ -38,6 +38,17 @@ hadoop fs -copyFromLocal data/ hdfs://localhost:9000/user/root/data
 
 # Start map/reduce job
 yarn jar $HADOOP_HOME/hadoop-streaming.jar -input data/tpsgc-pwgsc_co-ch_tous-all.csv -output out -mapper /bin/cat -reducer /bin/wc
+
++# Show files in the output folder
++hadoop fs -ls hdfs://localhost:9000/user/root/out
++
++# show results
++#1) reference (computation with a commandline)
++wc data/tpsgc-pwgsc_co-ch_tous-all.csv
++361318 22527194 285375701
++#2) same computation with mapreduce (when the file is too big usually)
++hadoop fs -cat out/part-00000
++361318 22527194 285375701
 ```
 
 Note : For compatibilities/accessibilities/simplicites against hardware and env. requirements, tensorflow and pytorch are configured without AVX and Cuda.
