@@ -1,6 +1,6 @@
 FROM agileops/centos-javapython:latest
 
-ENV HADOOP_VERSION=2.7.5 \
+ENV HADOOP_VERSION=2.7.6 \
     HADOOP_HOME=/opt/hadoop \
     SPARK_VERSION=2.3.0 \
     SPARK_HOME=/opt/spark \
